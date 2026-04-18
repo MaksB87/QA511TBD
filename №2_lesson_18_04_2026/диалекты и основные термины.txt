@@ -1,0 +1,18 @@
+ddl
+--
+create
+alter
+drop
+
+dml
+--
+select
+insert
+update
+delete
+
+dcl
+--
+grant  пример: grant select, insert ON users to admin;
+deny
+revoke  пример: revoke  insert ON users from admin;

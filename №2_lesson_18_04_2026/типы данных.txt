@@ -1,0 +1,32 @@
+char(30)
+varchar(n|max)
+nchar(n)
+nvarchar(n|max)
+
+nchar(10) char(10) 20 байт и 10 байт  строки с 6 символами
+varchar(10) nvarchar(10)  6 байт и 12 байт строки с 6 символами
+------------
+
+text(n) ntext(n)
+
+--------------
+float(n) real(float(24))
+
+---------------------
+date datetime
+
+-------------------
+money
+smallmoney
+
+-------------------
+integer
+---------------
+null
+
+-------------
+blob
+
+-----------------------
+sqlite
+text(varchar) integer real date(datetime)

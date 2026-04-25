@@ -1,0 +1,15 @@
+-- insert into Teachers(FirstName,LastName,Birthdate) values 
+-- ('Sophia','Davies','1984-12-08'),
+-- ('Emma' ,'Kirk','1973-05-12'),
+-- ('Henry', 'MacAlister','1975-02-17'),
+-- ('Michael', 'Cooper','1978-11-23'),
+-- ('Daniel', 'Williams','1979-07-30');
+
+-- insert into [Groups] (GroupName,FacultyId) values 
+-- ('29PR21',1),
+-- ('30PR11',2),
+-- ('31PPS11',1),
+-- ('32PR31',2),
+-- ('32PPS11',3);
+
+-- insert into TeachersGroups values(1,3),(2,4),(3,2),(4,1),(5,5),(1,2);

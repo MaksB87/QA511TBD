@@ -23,3 +23,10 @@
 
 select*from Teachers;
 select*from Authentifications;
+
+--декартовое произведение
+-- select * from Teachers, Authentifications;
+
+
+select T.ID,FirstName,LastName,Login,Password 
+from Teachers T, Authentifications A where T.ID=A.ID;

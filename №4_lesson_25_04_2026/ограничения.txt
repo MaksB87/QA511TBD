@@ -1,0 +1,6 @@
+not null
+default
+check
+unique
+primary key
+foreighn key

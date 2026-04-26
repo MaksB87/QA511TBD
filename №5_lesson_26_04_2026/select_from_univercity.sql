@@ -49,13 +49,47 @@
 -- from Teachers;
 
 
-select count(GroupName) as [кол-во групп] from [Groups];
-select * from [Groups];
 
-select FacultyId,count(GroupName) as [кол-во групп] from [Groups] group by Facultyid;
+-- select count(GroupName) as [кол-во групп] from [Groups];
+-- select * from [Groups];
 
-select T.id [Айди Преподавателя],T.Firstname||' '||T.Lastname [ФИО Преподавателя],
-count(ST.firstname)[кол-во студентов у преподавателя] from  Teachers T, 
- Teachers_Subjects TS, Subjects S, Students ST, Achievements A 
- where TS.TeacherId=T.id and TS.SubjectId=S.id and A.SubjectId=S.id and A.StudentId=ST.Id  
- group by [ФИО Преподавателя],[Айди Преподавателя];
+-- select FacultyId,count(GroupName) as [кол-во групп] from [Groups] group by Facultyid;
+
+-- select T.id [Айди Преподавателя],T.Firstname||' '||T.Lastname [ФИО Преподавателя],
+-- count(ST.firstname)[кол-во студентов у преподавателя] from  Teachers T, 
+--  Teachers_Subjects TS, Subjects S, Students ST, Achievements A 
+--  where TS.TeacherId=T.id and TS.SubjectId=S.id and A.SubjectId=S.id and A.StudentId=ST.Id  
+--  group by [ФИО Преподавателя],[Айди Преподавателя];
+
+-- select FacultyId,count(GroupName) as [кол-во групп] from [Groups] group by Facultyid having count(GroupName)>1;
+
+
+-- select count(--),Column from Table(s) where --group by Column having--;
+
+
+select GroupName,Count(*) as [кол-в студентов] from [Groups] G,
+Students S where G.id=S.GroupId group by GroupName;
+
+select GroupName,Count(*) as [кол-в студентов] from [Groups] G,
+Students S where G.id=S.GroupId group by GroupName having count(S.GroupId)>=2;
+
+select GroupName,Count(*) as [кол-во студентов] from [Groups] G,
+Students S where G.id=S.GroupId group by GroupName having count(S.GroupId)>=2 order by [кол-во студентов] desc;
+
+select firstname,lastname,grants from students group by LastName,Firstname,Grants having avg(Grants)<=1200;
+
+-- select avg(Grants) from Students;
+select firstname,lastname,grants from students where grants<=(select avg(Grants) from Students);
+
+select firstname,lastname from students
+ group by firstname,lastname having lastname in ('Moore','Thomas','Brown');
+
+ select min(Lastname) as [Самая короткая фамилия] from Students Having avg(Grants)>1100; 
+
+ --шаблон 
+ --SELECT columnName1,columnName2,...
+ --FROM TableName   
+ --[WHERE condition]
+ --[GROUP BY columnName1,columnName2,...]
+ --HAVING condition
+-- [ORDER BY columnName1 ASC|DESC,...]

@@ -61,3 +61,51 @@ from students where not exists( select *from achievements a where a.studentid=st
 union
 select FirstName,LastName,Birthdate,Email
 from students where id in (select studentid from achievements where assesment=10);
+
+
+select firstname||' '||lastname fullname, birthdate from teachers
+union
+select firstname||' '||lastname fullname, birthdate from students;
+
+select firstname||' '||lastname fullname, birthdate from teachers where cast(strftime('%Y','now')-strftime('%Y',birthdate) as integer)<40
+union
+select firstname||' '||lastname fullname, birthdate from students;
+
+select firstname||' '||lastname fullname, birthdate from teachers where cast(strftime('%Y','now')-strftime('%Y',birthdate) as integer)<40
+union
+select firstname||' '||lastname fullname, birthdate from students order by Birthdate;
+
+select 'Весна' as [Сезоны года], count(*) as [кол-во студентов] from students
+where cast(strftime('%m',birthdate) as integer) between 3 and 5
+union all
+select 'Лето' as [Сезоны года], count(*) as [кол-во студентов] from students
+where cast(strftime('%m',birthdate) as integer) between 6 and 8
+union all
+select 'Осень' as [Сезоны года], count(*) as [кол-во студентов] from students
+where cast(strftime('%m',birthdate) as integer) between 9 and 11
+union all
+select 'Зима' as [Сезоны года], count(*) as [кол-во студентов] from students
+where cast(strftime('%m',birthdate) as integer) in(1,2,12);
+--------
+
+select  count(*) as allcount from students
+where cast(strftime('%m',birthdate) as integer) between 5 and 8
+union all
+select  count(*) as allcount from teachers
+where cast(strftime('%m',birthdate) as integer) between 5 and 8;
+
+
+select 'Студенты' [Второй квартал года],count(*) as [кол-во] from students
+where cast(strftime('%m',birthdate) as integer) between 5 and 8
+union all
+select 'Преподаватели' [Второй квартал года], count(*) as [кол-во] from teachers
+where cast(strftime('%m',birthdate) as integer) between 5 and 8
+union all
+select 'Все', SUM(allsum.allcount) from (
+select count(*) as allcount from students
+where cast(strftime('%m',birthdate) as integer) between 5 and 8
+union all
+select  count(*) as allcount from teachers
+where cast(strftime('%m',birthdate) as integer) between 5 and 8
+) as allsum
+;

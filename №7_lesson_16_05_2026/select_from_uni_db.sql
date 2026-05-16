@@ -109,3 +109,27 @@ select  count(*) as allcount from teachers
 where cast(strftime('%m',birthdate) as integer) between 5 and 8
 ) as allsum
 ;
+
+------------------------------------------------join------------------
+-- inner внутреннее, внешние-правое right и полное full(нет sqlite), left левое
+--select column1,column2,.... from table1 [inner] join table2 on table1.columnname=table2.columnname;
+
+select * from [groups] g inner join students s on  g.id=s.groupid;
+select lastname,firstname,email,groupname from [groups] g inner join students s on  g.id=s.groupid;
+select firstname,lastname, Name as Subject, Assesment,GroupName from [groups] g  join students s on  g.id=s.groupid
+join Achievements A on S.id=A.studentid join Subjects SB on SB.id=A.Subjectid;
+
+select firstname,lastname, Name as Subject, Assesment,GroupName from [groups] g  join students s on  g.id=s.groupid
+join Achievements A on S.id=A.studentid join Subjects SB on SB.id=A.Subjectid where GroupName like '29%' order by Birthdate;
+
+select Firstname||' '||Lastname FullName,Assesment from Students S join Achievements A on s.id=a.studentid;
+select Firstname||' '||Lastname FullName,Assesment from Students S left join Achievements A on s.id=a.studentid;
+select Firstname||' '||Lastname FullName,Assesment from Students S left join Achievements A on s.id=a.studentid where assesment is null;
+
+select Firstname||' '||Lastname FullName,Assesment from Achievements A right join Students S on s.id=a.studentid;
+
+select Name as [SubjectName], Firstname,LastName from Teachers_subjects ts  right join subjects s on s.id=ts.subjectid left join teachers t 
+on t.id=ts.teacherid;
+
+
+-- select Firstname||' '||Lastname FullName,GroupName from Students S full join Groups g on g.id=s.groupid;
